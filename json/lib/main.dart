@@ -22,9 +22,13 @@ void main() async {
                 ListTile(
                   leading: Text("${_dados[posicao]['id']}"),
                   title: Text("${_dados[posicao]['name']}"),
-                  subtitle: Text("${_dados[posicao]['phone']}"),
+                  // subtitle: Text("${_dados[posicao]['phone']}"),
                   onTap: () {
-                    debugPrint("${_dados[posicao]['email']}");
+                    // debugPrint("${_dados[posicao]['email']}");
+                    final String detalhes =
+                        "${_dados[posicao]['phone']} \n ${_dados[posicao]['email']}";
+                    // _mensagem(context, _dados[posicao]['phone']);
+                    _mensagem(context, _dados[posicao]['name'], detalhes);
                   },
                 ),
               ],
@@ -34,6 +38,27 @@ void main() async {
       ),
     ),
   ));
+}
+
+void _mensagem(BuildContext context, String contato, String mensagem) {
+  var alert = AlertDialog(
+    backgroundColor: Colors.blue.shade300,
+    title: Text(
+      contato,
+      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    ),
+    content: Text(mensagem),
+    actions: <Widget>[
+      FlatButton(
+        onPressed: () => {Navigator.pop(context)},
+        child: Text(
+          "OK",
+          style: TextStyle(color: Colors.white),
+        ),
+      )
+    ],
+  );
+  showDialog(context: context, builder: (context) => alert);
 }
 
 // https://jsonplaceholder.typicode.com/users

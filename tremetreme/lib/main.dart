@@ -118,5 +118,9 @@ void detalhes(BuildContext context, String mensagem) {
           child: Text("OK")),
     ],
   );
-  showDialog(context: context, child: alert);
+  showDialog(
+      context: context,
+      builder: (_) {
+        return alert;
+      });
 }
